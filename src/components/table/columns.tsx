@@ -49,7 +49,7 @@ export const COLUMNS = [
   },
   {
     Header: "MC/MX/FF",
-    accessor: "m_city",
+    accessor: "mc_mx_ff_number",
     Filter: ColumnFilter,
   },
   {
@@ -59,7 +59,7 @@ export const COLUMNS = [
   },
   {
     Header: "Out of Service Date",
-    accessor: "mcs_150_form_date",
+    accessor: "out_of_service_date",
     Filter: ColumnFilter,
   },
 ];

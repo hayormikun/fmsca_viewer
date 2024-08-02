@@ -44,50 +44,57 @@ export const PaginationList = (props: Props) => {
   };
 
   return (
-    <section>
-      <ul>
+    <section className="w-full md:w-[40%] flex justify-end">
+      <ul className="w-full flex items-center gap-2">
         {page === 1 ? (
           ""
         ) : (
           <li>
-            <span className="cursor-pointer" onClick={handleStartPage}>
+            <button
+              type="button"
+              className="px-4 py-2 text-sm font-medium text-teal-400 bg-white rounded-md hover:bg-teal-400 hover:text-white cursor-pointer"
+              onClick={handleStartPage}
+            >
               &laquo;
-            </span>
+            </button>
           </li>
         )}
         {page === 1 ? (
           ""
         ) : (
           <li>
-            <span className="cursor-pointer" onClick={handlePrev}>
+            <button
+              type="button"
+              className="px-4 py-2 text-sm font-medium text-teal-400 bg-white rounded-md hover:bg-teal-400 hover:text-white cursor-pointer"
+              onClick={handlePrev}
+            >
               &lsaquo;
-            </span>
+            </button>
           </li>
         )}
         {paginationArray.map((item) => {
           if (item === page) {
             return (
-              <li
-                className="text-white bg-teal-500 p-2 font-semibold"
-                key={item}
-              >
-                <span
-                  className="cursor-pointer"
+              <li key={item}>
+                <button
+                  type="button"
+                  className="px-4 py-2 text-sm font-medium bg-teal-400 rounded-md text-white cursor-pointer"
                   onClick={() => handleSelectedPage(item)}
                 >
                   {item}
-                </span>
+                </button>
               </li>
             );
           } else {
             return (
-              <li className="text-teal-500" key={item}>
-                <span
-                  className="cursor-pointer"
+              <li key={item}>
+                <button
+                  type="button"
+                  className="px-4 py-2 text-sm font-medium text-teal-400 bg-white rounded-md hover:bg-teal-400 hover:text-white cursor-pointer"
                   onClick={() => handleSelectedPage(item)}
                 >
                   {item}
-                </span>
+                </button>
               </li>
             );
           }
@@ -95,18 +102,26 @@ export const PaginationList = (props: Props) => {
 
         {page < totalPages ? (
           <li>
-            <span className="cursor-pointer" onClick={handleNext}>
+            <button
+              type="button"
+              className="px-4 py-2 text-sm font-medium text-teal-400 bg-white rounded-md hover:bg-teal-400 hover:text-white cursor-pointer"
+              onClick={handleNext}
+            >
               &rsaquo;
-            </span>
+            </button>
           </li>
         ) : (
           ""
         )}
         {page < totalPages ? (
           <li>
-            <span className="cursor-pointer" onClick={handleLastPage}>
+            <button
+              type="button"
+              className="px-4 py-2 text-sm font-medium text-teal-400 bg-white rounded-md hover:bg-teal-400 hover:text-white cursor-pointer"
+              onClick={handleLastPage}
+            >
               &raquo;
-            </span>
+            </button>
           </li>
         ) : (
           ""

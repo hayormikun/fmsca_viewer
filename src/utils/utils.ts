@@ -2,7 +2,7 @@ import entity from "@/data/FMSCA.json";
 import _ from "lodash";
 
 const { records }: any = entity;
-const limit = 20;
+const limit = 15;
 
 export const fetchData = (page: number) => {
   const data = [];

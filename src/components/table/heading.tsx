@@ -6,8 +6,8 @@ type HeaderProps = {
 
 export const Heading = ({header}: HeaderProps) => {
   return (
-    <th className="flex text-center text-sm capitalize font-semibold tracking-wide w-full">
+    <h1 className="mt-5 text-center text-2xl capitalize font-semibold tracking-widest w-full">
         {header}
-    </th>
+    </h1>
   )
 }
