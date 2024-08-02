@@ -51,7 +51,24 @@ export const UserDetails = () => {
                         : ""}
                     </span>
                   </div>
+                </th>
+              ))}
+            </tr>
+          ))}
 
+
+{headerGroups.map((headerGroup) => (
+            // eslint-disable-next-line react/jsx-key
+            <tr
+              {...headerGroup.getHeaderGroupProps()}
+              className="w-full flex items-center gap-2"
+            >
+              {headerGroup.headers.map((column: any) => (
+                // eslint-disable-next-line react/jsx-key
+                <th
+                  {...column.getHeaderProps(column.getSortByToggleProps())}
+                  className="flex flex-col gap-2 text-center h-auto m-2 justify-center w-1/12 box-border"
+                >
                   <div className="block">
                     {column.canFilter ? column.render("Filter") : null}
                   </div>
