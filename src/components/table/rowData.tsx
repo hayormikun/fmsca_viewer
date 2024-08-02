@@ -6,7 +6,7 @@ type DataProps = {
 
 export const RowData = ({data}: DataProps) => {
   return (
-    <td className="text-sm capitalize tracking-wide w-full">
+    <td className="flex text-center text-xs capitalize tracking-wide w-full">
         {data}
     </td>
   )

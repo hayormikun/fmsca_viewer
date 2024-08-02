@@ -6,7 +6,7 @@ type HeaderProps = {
 
 export const Heading = ({header}: HeaderProps) => {
   return (
-    <th className="text-base capitalize font-semibold tracking-wide w-full">
+    <th className="flex text-center text-sm capitalize font-semibold tracking-wide w-full">
         {header}
     </th>
   )

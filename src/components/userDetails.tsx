@@ -1,54 +1,75 @@
 "use client";
-import React, { useMemo, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { Heading } from "./table/heading";
 import { RowData } from "./table/rowData";
-import { fetchUserData } from "@/utils/utils";
+import { fetchData } from "@/utils/utils";
+import { PageContext } from "@/contexts/pageContext";
+import { useFilters, useSortBy, useTable } from "react-table";
+import { COLUMNS } from "./table/columns";
+import { ColumnFilter } from "./table/columnFilter";
 
-type Props = {
-  id: number;
-};
+export const UserDetails = () => {
+  const [data, setData] = useState<any>([]);
+  const { page } = useContext(PageContext);
+  useMemo(() => setData(fetchData(page)), [page]);
 
-export const UserDetails = ({ id }: Props) => {
-  const [data, setData] = useState<any>(null);
-  
-  useMemo(() => setData(fetchUserData(id)), [id]);
+  const columns = useMemo(() => COLUMNS, []);
+
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable({
+      columns,
+      data,
+    },
+    useFilters,
+    useSortBy,
+  );
 
   return (
     <section className="w-full">
-      <table className="w-[80%] mx-auto flex flex-col">
+      <table {...getTableProps()} className="w-[90%] mx-auto flex flex-col">
         <thead className="w-full">
-          <tr className="flex gap-2">
-            <Heading header={"Created_DT"} />
-            <Heading header={"Modified_DT"} />
-            <Heading header={"Entity"} />
-            <Heading header={"Operating Status"} />
-            <Heading header={"Legal Name"} />
-            <Heading header={"DSA Name"} />
-            <Heading header={"Physical Address"} />
-            <Heading header={"Phone"} />
-            <Heading header={"DOT"} />
-            <Heading header={"MC/MX/FF"} />
-            <Heading header={"Power Units"} />
-            <Heading header={"Out of Service Date"} />
-          </tr>
+          {headerGroups.map((headerGroup) => (
+            // eslint-disable-next-line react/jsx-key
+            <tr
+              {...headerGroup.getHeaderGroupProps()}
+              className="w-full flex gap-2"
+            >
+              {headerGroup.headers.map((column: any) => (
+                // eslint-disable-next-line react/jsx-key
+                <th
+                  {...column.getHeaderProps(column.getSortByToggleProps())}
+                  className="flex text-center text-sm capitalize font-semibold tracking-wide w-full"
+                >
+                  {column.render("Header")}
+                  <div>{column.canFilter ? column.render('Filter') : null}</div>
+                  <span>
+                    {column.isSorted
+                      ? column.isSortedDesc
+                        ? ' 🔽'
+                        : ' 🔼'
+                      : ''}
+                  </span>
+                </th>
+              ))}
+            </tr>
+          ))}
         </thead>
-        {data !== null &&
-        <tbody>
-          <tr className="w-full">
-            <RowData data={data.created_dt} />
-            <RowData data={data.data_source_modified_dt} />
-            <RowData data={data.entity_type} />
-            <RowData data={data.record_status} />
-            <RowData data={data.legal_name} />
-            <RowData data={data.dba_name} />
-            <RowData data={data.physical_address} />
-            <RowData data={data.phone} />
-            <RowData data={data.usdot_number} />
-            <RowData data={data.m_city} />
-            <RowData data={data.power_units} />
-            <RowData data={data.mcs_150_form_date} />
-          </tr>
-        </tbody>}
+        {data !== null && (
+          <tbody {...getTableBodyProps()} className="w-full">
+             {rows.map(row => {
+            prepareRow(row)
+            return (
+              // eslint-disable-next-line react/jsx-key
+              <tr {...row.getRowProps()} className="w-full flex gap-2">
+                {row.cells.map(cell => {
+                  // eslint-disable-next-line react/jsx-key
+                  return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                })}
+              </tr>
+            )
+          })}
+          </tbody>
+        )}
       </table>
     </section>
   );
