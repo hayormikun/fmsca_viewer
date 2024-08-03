@@ -7,7 +7,7 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "FMSCA Viewer",
-  description: "Mk400 Assessment",
+  description: "Spotter ai Assessment",
 };
 
 export default function RootLayout({
