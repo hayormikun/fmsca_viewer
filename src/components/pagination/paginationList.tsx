@@ -52,7 +52,7 @@ export const PaginationList = (props: Props) => {
           <li>
             <button
               type="button"
-              className="px-4 py-2 text-sm font-medium text-teal-400 bg-white rounded-md hover:bg-teal-400 hover:text-white cursor-pointer"
+              className="px-2 md:px-4 py-1 md:py-2 text-xs md:text-sm font-medium text-teal-400 bg-white rounded-sm md:rounded-md hover:bg-teal-400 hover:text-white cursor-pointer"
               onClick={handleStartPage}
             >
               &laquo;
@@ -65,7 +65,7 @@ export const PaginationList = (props: Props) => {
           <li>
             <button
               type="button"
-              className="px-4 py-2 text-sm font-medium text-teal-400 bg-white rounded-md hover:bg-teal-400 hover:text-white cursor-pointer"
+              className="px-2 md:px-4 py-1 md:py-2 text-xs md:text-sm font-medium text-teal-400 bg-white rounded-sm md:rounded-md hover:bg-teal-400 hover:text-white cursor-pointer"
               onClick={handlePrev}
             >
               &lsaquo;
@@ -78,7 +78,7 @@ export const PaginationList = (props: Props) => {
               <li key={item}>
                 <button
                   type="button"
-                  className="px-4 py-2 text-sm font-medium bg-teal-400 rounded-md text-white cursor-pointer"
+                  className="px-2 md:px-4 py-1 md:py-2 text-xs md:text-sm font-medium bg-teal-400 rounded-sm md:rounded-md text-white cursor-pointer"
                   onClick={() => handleSelectedPage(item)}
                 >
                   {item}
@@ -90,7 +90,7 @@ export const PaginationList = (props: Props) => {
               <li key={item}>
                 <button
                   type="button"
-                  className="px-4 py-2 text-sm font-medium text-teal-400 bg-white rounded-md hover:bg-teal-400 hover:text-white cursor-pointer"
+                  className="px-2 md:px-4 py-1 md:py-2 text-xs md:text-sm font-medium text-teal-400 bg-white rounded-sm md:rounded-md hover:bg-teal-400 hover:text-white cursor-pointer"
                   onClick={() => handleSelectedPage(item)}
                 >
                   {item}
@@ -104,7 +104,7 @@ export const PaginationList = (props: Props) => {
           <li>
             <button
               type="button"
-              className="px-4 py-2 text-sm font-medium text-teal-400 bg-white rounded-md hover:bg-teal-400 hover:text-white cursor-pointer"
+              className="px-2 md:px-4 py-1 md:py-2 text-xs md:text-sm font-medium text-teal-400 bg-white rounded-sm md:rounded-md hover:bg-teal-400 hover:text-white cursor-pointer"
               onClick={handleNext}
             >
               &rsaquo;
@@ -117,7 +117,7 @@ export const PaginationList = (props: Props) => {
           <li>
             <button
               type="button"
-              className="px-4 py-2 text-sm font-medium text-teal-400 bg-white rounded-md hover:bg-teal-400 hover:text-white cursor-pointer"
+              className="px-2 md:px-4 py-1 md:py-2 text-xs md:text-sm font-medium text-teal-400 bg-white rounded-sm md:rounded-md hover:bg-teal-400 hover:text-white cursor-pointer"
               onClick={handleLastPage}
             >
               &raquo;
