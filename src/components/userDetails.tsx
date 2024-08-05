@@ -39,7 +39,7 @@ export const UserDetails = () => {
                 // eslint-disable-next-line react/jsx-key
                 <th
                   {...column.getHeaderProps(column.getSortByToggleProps())}
-                  className="flex  items-center justify-center w-[80px] box-border"
+                  className="flex  items-center justify-center box-border"
                 >
                   <h3 className="text-white text-xs capitalize font-medium tracking-wide">
                     {column.render("Header")}
@@ -66,7 +66,7 @@ export const UserDetails = () => {
                 // eslint-disable-next-line react/jsx-key
                 <th
                   {...column.getHeaderProps()}
-                  className=" w-[80px] box-border"
+                  className=" box-border"
                 >
                   {column.canFilter ? column.render("Filter") : null}
                 </th>
@@ -90,7 +90,7 @@ export const UserDetails = () => {
                         // eslint-disable-next-line react/jsx-key
                         <td
                           {...cell.getCellProps()}
-                          className="text-xs tracking-wide text-center my-2 w-[80px] box-border"
+                          className="text-xs capitalize tracking-wide text-left my-1 box-border"
                         >
                           {cell.render("Cell")}
                         </td>
@@ -110,7 +110,7 @@ export const UserDetails = () => {
                         // eslint-disable-next-line react/jsx-key
                         <td
                           {...cell.getCellProps()}
-                          className="text-xs tracking-wide text-center my-2 w-[80px] box-border"
+                          className="text-xs capitalize tracking-wide text-left my-1 box-border"
                         >
                           {cell.render("Cell")}
                         </td>
