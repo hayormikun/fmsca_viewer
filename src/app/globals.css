@@ -14,7 +14,7 @@
 @import '../../node_modules/@syncfusion/ej2-calendars/styles/material.css';
 @import '../../node_modules/@syncfusion/ej2-react-pivotview/styles/material.css';
 
-@import url("https://cdn.syncfusion.com/ej2/bootstrap5.css")
+@import url("https://cdn.syncfusion.com/ej2/bootstrap5.css");
 
 * {
   margin: 0;
