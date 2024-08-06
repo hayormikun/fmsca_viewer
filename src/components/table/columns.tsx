@@ -1,16 +1,22 @@
-import React from "react";
 import { ColumnFilter } from "./columnFilter";
+import { formatDateTime } from "@/utils/utils";
 
 export const COLUMNS = [
   {
     Header: "Created_DT",
     accessor: "created_dt",
     Filter: ColumnFilter,
+    Cell: ({ value }: any) => {
+      return formatDateTime(value);
+    },
   },
   {
     Header: "Modified_DT",
     accessor: "data_source_modified_dt",
     Filter: ColumnFilter,
+    Cell: ({ value }: any) => {
+      return formatDateTime(value);
+    },
   },
   {
     Header: "Entity",

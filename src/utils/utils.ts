@@ -4,10 +4,17 @@ import _ from "lodash";
 const { records }: any = entity;
 const limit = 15;
 
+export const formatDateTime = (datetime: string): string => {
+  const temp = datetime.split("+");
+  const data = temp[0].split("-").join("/");
+
+  return data;
+};
+
 export const fetchData = (page: number) => {
   const data = [];
 
-  for (let i = (page - 1) * limit; i < (page * limit) && records[i]; i++) {
+  for (let i = (page - 1) * limit; i < page * limit && records[i]; i++) {
     data.push(records[i]);
   }
 
@@ -56,6 +63,6 @@ export const paginationRange = (
     return [1, "... ", ...range];
   } else {
     const range = _.range(leftSiblingsIndex, rightSiblingsIndex + 1);
-    return [ ...range, " ...", total];
+    return [...range, " ...", total];
   }
 };
