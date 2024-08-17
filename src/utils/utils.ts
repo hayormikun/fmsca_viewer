@@ -1,8 +1,9 @@
 import entity from "@/data/FMSCA.json";
+import { format } from "date-fns";
 import _ from "lodash";
 
 const { records }: any = entity;
-const limit = 15;
+const limit = 25;
 
 export const formatDateTime = (datetime: string): string => {
   const temp = datetime.split("+");
@@ -21,6 +22,54 @@ export const fetchData = (page: number) => {
   return data;
 };
 
+export const fetchSearchedData = (searchTerm: string, page: number) => {
+  const data = [];
+
+  const filteredData = records.filter((item: object) => {
+    Object.values(item).some((value) => {
+      value.toString().toLowerCase().includes(searchTerm.toLocaleLowerCase());
+    });
+  });
+
+  if (filteredData.length > 1) {
+    for (
+      let i = (page - 1) * limit;
+      i < page * limit && filteredData.length;
+      i++
+    ) {
+      data.push(filteredData[i]);
+    }
+  } else {
+    for (let i = (page - 1) * limit; i < page * limit && records[i]; i++) {
+      data.push(records[i]);
+    }
+  }
+
+  return data;
+};
+
+export const fetchPivotSearchedData = (searchTerm: string) => {
+  const data = [];
+
+  const filteredData = records.filter((item: object) => {
+    Object.values(item).some((value) => {
+      value.toString().toLowerCase().includes(searchTerm.toLocaleLowerCase());
+    });
+  });
+
+  if (filteredData.length > 1) {
+    for (let i = 0; i < filteredData.length; i++) {
+      data.push(filteredData[i]);
+    }
+  } else {
+    for (let i = 0; i < records[i]; i++) {
+      data.push(records[i]);
+    }
+  }
+
+  return data;
+};
+
 export const fetchUserData = (id: number) => {
   const data = records.find((record: any) => {
     return record.id == id;
@@ -31,6 +80,27 @@ export const fetchUserData = (id: number) => {
   } else {
     throw new Error("can't find details for this user");
   }
+};
+
+export const outOfServiceCompanies = () => {
+  const data: any = [];
+
+  for (let i = 0; i < records.length; i++) {
+    if (
+      records[i].out_of_service_date &&
+      records[i].power_units &&
+      records[i].drivers &&
+      records[i].legal_name
+    ) {
+      // const [day, month, year] = records[i].out_of_service_date.split("/");
+      // let newDate: string | Date = `${year}-${month}-${day}`;
+      // newDate = new Date(newDate);
+      // records[i].out_of_service_date = format(newDate, "MMM");
+      data.push(records[i]);
+    }
+  }
+
+  return data;
 };
 
 export const getTotalPages = () => {

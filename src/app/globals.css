@@ -21,7 +21,7 @@
   outline-offset: 0;
 }
 
-tr th, tr td {
+tr th, tr td input {
   width: 80px;
 }
 
@@ -29,6 +29,6 @@ th:nth-child(5), th:nth-child(6), th:nth-child(7), th:nth-child(8) {
   width: 130px;
 }
 
-td:nth-child(5), td:nth-child(6), td:nth-child(7), td:nth-child(8) {
+td:nth-child(5) input, td:nth-child(6) input, td:nth-child(7) input, td:nth-child(8) input {
   width: 130px;
 }

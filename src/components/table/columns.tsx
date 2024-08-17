@@ -29,6 +29,11 @@ export const COLUMNS = [
     Filter: ColumnFilter,
   },
   {
+    Header: "State Id",
+    accessor: "id",
+    Filter: ColumnFilter,
+  },
+  {
     Header: "Legal Name",
     accessor: "legal_name",
     Filter: ColumnFilter,
@@ -44,6 +49,20 @@ export const COLUMNS = [
     Filter: ColumnFilter,
   },
   {
+    Header: "Mailing Address",
+    accessor: "mailing_address",
+    Filter: ColumnFilter,
+  },{
+    Header: "Mcs 150 Form Date",
+    accessor: "mcs_150_form_date",
+    Filter: ColumnFilter,
+  },
+  {
+    Header: "Mileage Year",
+    accessor: "mcs_150_mileage_year",
+    Filter: ColumnFilter,
+  },
+  {
     Header: "Phone",
     accessor: "phone",
     Filter: ColumnFilter,
@@ -56,6 +75,16 @@ export const COLUMNS = [
   {
     Header: "MC/MX/FF",
     accessor: "mc_mx_ff_number",
+    Filter: ColumnFilter,
+  },
+  {
+    Header: "Duns Number",
+    accessor: "duns_number",
+    Filter: ColumnFilter,
+  },
+  {
+    Header: "Drivers",
+    accessor: "drivers",
     Filter: ColumnFilter,
   },
   {

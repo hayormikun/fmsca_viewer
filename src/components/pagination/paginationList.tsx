@@ -1,46 +1,60 @@
 "use client";
 import { PageContext } from "@/contexts/pageContext";
 import { getTotalPages, paginationRange } from "@/utils/utils";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 type Props = {};
 
 export const PaginationList = (props: Props) => {
-  const { page, setPage } = useContext(PageContext);
+  // const { page, setPage } = useContext(PageContext);
+  const [page, setPage] = useState<number>(1);
+  
+  useEffect(() => {
+    const cachedPage = localStorage.getItem('page') 
+    cachedPage ? setPage(Number(cachedPage)): '' 
+  }, [])
+
   const totalPages = getTotalPages();
   const paginationArray = paginationRange(totalPages, page, 1);
 
   const handlePrev = () => {
     setPage((prev) => prev - 1);
+    localStorage.setItem('page', page.toString()) 
   };
 
   const handleStartPage = () => {
     setPage(1);
+    localStorage.setItem('page', page.toString()) 
   };
 
   const handleSelectedPage = (selected: number | string) => {
     if (selected === "... ") {
       setPage(1);
+      localStorage.setItem('page', page.toString()) 
       return;
     }
 
     if (selected === " ...") {
       setPage(totalPages);
+      localStorage.setItem('page', page.toString()) 
       return;
     }
 
     if (typeof selected === "number") {
       setPage(selected);
+      localStorage.setItem('page', page.toString()) 
       return;
     }
   };
 
   const handleLastPage = () => {
     setPage(totalPages);
+    localStorage.setItem('page', page.toString()) 
   };
 
   const handleNext = () => {
     setPage((prev) => prev + 1);
+    localStorage.setItem('page', page.toString()) 
   };
 
   return (
