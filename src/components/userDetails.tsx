@@ -96,7 +96,7 @@ export const UserDetails = () => {
 
   return (
     <div className="w-full">
-      <div className="w-full flex item-center mb-3 justify-between">
+      <div className="w-full flex flex-col gap-3 lg:flex lg:item-center mb-3 justify-between">
       <GlobalFilter preGlobalFilteredRows={preGlobalFilteredRows}
         globalFilter={state.globalFilter}
         setGlobalFilter={setGlobalFilter} />
