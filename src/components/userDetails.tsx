@@ -15,8 +15,6 @@ import {
 import { COLUMNS } from "./table/columns";
 import { GlobalFilter } from "./table/globalFilter";
 import { EditableCell } from "./table/editableCell";
-import { DndProvider, useDrag, useDrop } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 import { SearchBar } from "./table/searchBar";
 
 const defaultColumn: any = {
@@ -96,7 +94,7 @@ export const UserDetails = () => {
 
   return (
     <div className="w-full">
-      <div className="w-full flex flex-col gap-3 lg:flex lg:item-center mb-3 justify-between">
+      <div className="w-full flex flex-col gap-3 lg:flex-row lg:item-center mb-3 justify-left lg:justify-between">
       <GlobalFilter preGlobalFilteredRows={preGlobalFilteredRows}
         globalFilter={state.globalFilter}
         setGlobalFilter={setGlobalFilter} />
