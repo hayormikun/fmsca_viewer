@@ -1,5 +1,5 @@
 import entity from "@/data/FMSCA.json";
-import { format } from "date-fns";
+import { format, parse } from "date-fns";
 import _ from "lodash";
 
 const { records }: any = entity;
@@ -86,20 +86,22 @@ export const outOfServiceCompanies = () => {
   const data: any = [];
 
   for (let i = 0; i < records.length; i++) {
-    if (
-      records[i].out_of_service_date &&
-      records[i].power_units &&
-      records[i].drivers &&
-      records[i].legal_name
-    ) {
-      // const [day, month, year] = records[i].out_of_service_date.split("/");
-      // let newDate: string | Date = `${year}-${month}-${day}`;
-      // newDate = new Date(newDate);
-      // records[i].out_of_service_date = format(newDate, "MMM");
-      data.push(records[i]);
+    if (records[i].out_of_service_date && records[i].legal_name) {
+      const parsedDate = parse(
+        records[i].out_of_service_date,
+        "MM/dd/yyyy",
+        new Date()
+      );
+      const formattedMonth = format(parsedDate, "MMM");
+      const formattedYear = format(parsedDate, "yy");
+
+      data.push({
+        legal_name: records[i].legal_name,
+        Month: formattedMonth,
+        Year: formattedYear,
+      });
     }
   }
-
   return data;
 };
 

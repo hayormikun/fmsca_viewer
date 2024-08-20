@@ -12,6 +12,7 @@ import {
 } from "@syncfusion/ej2-react-pivotview";
 import { ChartSettings } from "@syncfusion/ej2-pivotview/src/pivotview/model/chartsettings";
 import { outOfServiceCompanies } from "@/utils/utils";
+import { Heading } from "../table/heading";
 
 export function BarChart() {
   const [data, setData] = useState<any>([]);
@@ -22,33 +23,33 @@ export function BarChart() {
   } as DisplayOption;
 
   let chartSettings: ChartSettings = {
-    chartSeries: { type: "Bar" },
+    chartSeries: { type: "Column" },
   } as ChartSettings;
 
   let dataSourceSettings: IDataOptions = {
     dataSource: data,
     expandAll: false,
-    rows: [{ name: "out_of_service_date", caption: "OOS month" }],
-  columns: [{ name: "legal_name", caption: "Legal Name" }],
-    values: [
-      { name: "drivers", caption: "Drivers" },
-    ],
+    rows: [{ name: "Month" }],
+    columns: [{ name: "Year" }],
+    values: [{ name: "legal_name", caption: "Company" }],
     filters: [],
   };
 
-  let pivotObj: PivotViewComponent;
+  // let pivotObj: PivotViewComponent;
   return (
-    <PivotViewComponent
-      height={750}
-      ref={(d: any) => (pivotObj = d)}
-      id="PivotView"
-      enableVirtualization={true}
-      allowDataCompression={true}
-      chartSettings={chartSettings}
-      displayOption={displayOption}
-      dataSourceSettings={dataSourceSettings}
-    >
-      <Inject services={[PivotChart, VirtualScroll]} />
-    </PivotViewComponent>
+    <section className="w-full flex flex-col mt-3 gap-5">
+      <Heading header="Pivot Chart" />
+      <PivotViewComponent
+        height={750}
+        // ref={(d: any) => (pivotObj = d)}
+        id="PivotView"
+        dataSourceSettings={dataSourceSettings}
+        enableVirtualization={true}
+        chartSettings={chartSettings}
+        displayOption={displayOption}
+      >
+        <Inject services={[PivotChart]} />
+      </PivotViewComponent>
+    </section>
   );
 }
