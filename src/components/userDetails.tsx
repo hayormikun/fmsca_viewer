@@ -15,8 +15,6 @@ import {
 import { COLUMNS } from "./table/columns";
 import { GlobalFilter } from "./table/globalFilter";
 import { EditableCell } from "./table/editableCell";
-import { DndProvider, useDrag, useDrop } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
 import { SearchBar } from "./table/searchBar";
 
 const defaultColumn: any = {
@@ -29,7 +27,7 @@ interface ExtendedTableOptions<D extends object> extends TableOptions<D> {
 
 export const UserDetails = () => {
   const [data, setData] = useState<object[]>([{}]);
-  const {page} = useContext(PageContext);
+  const { page } = useContext(PageContext);
   useMemo(() => setData(fetchData(page)), [page]);
 
   const columns = useMemo(() => COLUMNS, []);
@@ -82,10 +80,12 @@ export const UserDetails = () => {
 
   return (
     <div className="w-full">
-      <div className="w-full flex flex-col gap-3 lg:flex-row lg:item-center mb-3 lg:justify-between">
-      <GlobalFilter preGlobalFilteredRows={preGlobalFilteredRows}
-        globalFilter={state.globalFilter}
-        setGlobalFilter={setGlobalFilter} />
+      <div className="w-full flex flex-col gap-3 lg:flex-row lg:item-center mb-3 justify-left lg:justify-between">
+        <GlobalFilter
+          preGlobalFilteredRows={preGlobalFilteredRows}
+          globalFilter={state.globalFilter}
+          setGlobalFilter={setGlobalFilter}
+        />
         {/* <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} setData={setData} page={page} /> */}
         <button
           onClick={handleColumnReorder}
