@@ -6,14 +6,13 @@ import React, { useContext, useEffect, useState } from "react";
 type Props = {};
 
 export const PaginationList = (props: Props) => {
-  // const { page, setPage } = useContext(PageContext);
-  const [page, setPage] = useState<number>(1);
-  
-  useEffect(() => {
-    const cachedPage = localStorage.getItem('page') 
-    cachedPage ? setPage(Number(cachedPage)): '' 
-  }, [])
+  const {page, setPage} = useContext(PageContext);
 
+  useEffect(() => {
+    const cachedPage = localStorage.getItem("page");
+    cachedPage ? setPage(Number(cachedPage)) : setPage(1);
+  }, []);
+  
   const totalPages = getTotalPages();
   const paginationArray = paginationRange(totalPages, page, 1);
 

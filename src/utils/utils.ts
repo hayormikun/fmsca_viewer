@@ -3,7 +3,7 @@ import { format, parse } from "date-fns";
 import _ from "lodash";
 
 const { records }: any = entity;
-const limit = 25;
+const limit = 20;
 
 export const formatDateTime = (datetime: string): string => {
   const temp = datetime.split("+");
@@ -15,7 +15,7 @@ export const formatDateTime = (datetime: string): string => {
 export const fetchData = (page: number) => {
   const data = [];
 
-  for (let i = (page - 1) * limit; i < page * limit && records[i]; i++) {
+  for (let i = (page - 1) * limit; i < (page * limit) && records[i]; i++) {
     data.push(records[i]);
   }
 

@@ -29,21 +29,9 @@ interface ExtendedTableOptions<D extends object> extends TableOptions<D> {
 
 export const UserDetails = () => {
   const [data, setData] = useState<object[]>([{}]);
-  const [page, setPage] = useState<number>(1);
-  const [searchTerm, setSearchTerm] = useState<string>("");
+  const {page} = useContext(PageContext);
+  useMemo(() => setData(fetchData(page)), [page]);
 
-  useEffect(() => {
-    const cachedPage = localStorage.getItem("page");
-    cachedPage ? setPage(Number(cachedPage)) : "";
-
-    const cachedSearch = localStorage.getItem("searchTerm");
-    cachedSearch ? setSearchTerm(cachedSearch) : "";
-  }, []);
-
-  useMemo(
-    () => setData(fetchSearchedData(searchTerm, page)),
-    [searchTerm, page]
-  );
   const columns = useMemo(() => COLUMNS, []);
   const [columnOrder, setColumnOrder] = useState<string[]>(
     columns.map((column) => column.accessor as string)
@@ -56,8 +44,6 @@ export const UserDetails = () => {
       )
     );
   };
-
-  useMemo(() => setData(fetchData(page)), [page]);
 
   const {
     getTableProps,
@@ -96,7 +82,7 @@ export const UserDetails = () => {
 
   return (
     <div className="w-full">
-      <div className="w-full flex flex-col gap-3 lg:flex lg:item-center mb-3 justify-between">
+      <div className="w-full flex flex-col gap-3 lg:flex-row lg:item-center mb-3 lg:justify-between">
       <GlobalFilter preGlobalFilteredRows={preGlobalFilteredRows}
         globalFilter={state.globalFilter}
         setGlobalFilter={setGlobalFilter} />
